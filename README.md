@@ -10,7 +10,7 @@
 3. Run `phpunit` from `vendor/bin`
 
 ```bash
-cd php_kats
+cd php_katas
 composer install
 vendor/bin/phpunit
 ```
