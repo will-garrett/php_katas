@@ -26,7 +26,7 @@ class BusyTime{
       $time_ints = CarbonPeriod::create($start_time, '30 minutes' ,$end_time)->toArray();
       $available_chunks = [];
       
-      for($i = 0; $i < count($time_ints)-3; $i++){
+      for($i = 0; $i < count($time_ints)-2; $i++){
         foreach($busy_times as $b_time){
             $does_overlap = self::isOverlapping([$time_ints[$i], $time_ints[$i+2]],[$b_time['start_time'], $b_time['end_time']]);
             if($does_overlap){
@@ -36,12 +36,8 @@ class BusyTime{
         $block1 = $time_ints[$i];
         $block2 = $time_ints[$i+2];
         if(!$does_overlap){
-
-          $available_chunks[]=['start_time'=>$block1->tz($target_tz), 'end_time'=>$block2->tz($target_tz)];
+          $available_chunks[]=['start_time'=>$block1->setTimezone($target_tz), 'end_time'=>$block2->setTimezone($target_tz)];
         }
-      }
-      foreach($available_chunks as $chunk){
-        echo $chunk['start_time']->toISOString()." - ".$chunk['end_time']->toISOString()."\n";
       }
       return $available_chunks;
   }
