@@ -26,21 +26,56 @@ class BusyTimesTest extends TestCase{
         'end_time'=>Carbon::parse('20:00:00', 'America/Los_Angeles')
       ]
     ];
-    $simplified_expect = [
+    $expect = [
       [
-        'start_time'=>Carbon::parse('9:30:00', 'America/Los_Angeles')->setTimezone('UTC'),
-        'end_time'=>Carbon::parse('11:00:00', 'America/Los_Angeles')->setTimezone('UTC')
+        'start_time'=>Carbon::parse('9:30:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('10:30:00', 'America/Los_Angeles')
       ],
       [
-        'start_time'=>Carbon::parse('12:00:00', 'America/Los_Angeles')->setTimezone('UTC'),
-        'end_time'=>Carbon::parse('15:00:00', 'America/Los_Angeles')->setTimezone('UTC')
+        'start_time'=>Carbon::parse('10:00:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('11:00:00', 'America/Los_Angeles')
       ],
       [
-        'start_time'=>Carbon::parse('16:00:00', 'America/Los_Angeles')->setTimezone('UTC'),
-        'end_time'=>Carbon::parse('19:00:00', 'America/Los_Angeles')->setTimezone('UTC')
+        'start_time'=>Carbon::parse('12:00:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('13:00:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('12:30:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('13:30:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('13:00:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('14:00:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('13:30:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('14:30:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('14:00:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('15:00:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('16:00:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('17:00:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('16:30:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('17:30:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('17:00:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('18:00:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('17:30:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('18:30:00', 'America/Los_Angeles')
+      ],
+      [
+        'start_time'=>Carbon::parse('18:00:00', 'America/Los_Angeles'),
+        'end_time'=>Carbon::parse('19:00:00', 'America/Los_Angeles')
       ]
     ];
-    var_dump(BusyTime::getAvailable($busy_times, 'America/Los_Angeles'));
-    //$this->assertEquals($expect, BusyTime::getAvailable($busy_times, 'UTC'));
+    $this->assertEquals($expect, BusyTime::getAvailable($busy_times, 'America/Los_Angeles'));
   }
 }
